@@ -5,7 +5,15 @@ Version: 0.1.0
 Author: Arthur Steinmetz
 Maintainer: Arthur Steinmetz <apsteinmetz@gmail.comt>
 Description: Palettes, typefaces and ggplot themes according to the Denison 2023
-    brand standards.  source: https://brand.denison.edu/
-License: MIT License
+    brand standards from https://brand.denison.edu/.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/apsteinmetz/denisonbrand
+BugReports: https://github.com/apsteinmetz/denisonbrand/issues
+Imports: dplyr,
+    ggplot2,
+    grDevices
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 2.10)
