@@ -15,7 +15,10 @@ elements to defaults, including theme.  Still needs a geom.
 }
 \examples{
 library(ggplot2)
+library(showtext)
+load_fonts()
 dt = data.frame(Category = LETTERS[1:6], values = runif(6)*10)
 dt |> ggplot(aes(Category, values,fill = Category)) + geom_col() +
-  ggden()
+  ggden() +
+  labs(title = "Denison Brand Colors")
 }

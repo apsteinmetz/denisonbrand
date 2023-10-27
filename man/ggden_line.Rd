@@ -15,19 +15,22 @@ elements to defaults
 }
 \examples{
 library(ggplot2)
-# Create a sequence of years
-years <- seq(2014, 2023)
-
-# Create series
-series <- LETTERS[1:6]
-
-# Create data frame
-df <- data.frame(year = rep(years, each = length(series)),
-                 series = rep(series, times = length(years)),
-                 value = (runif(length(years) * length(series))+1)*1:6)
-
-# plot df using ggplot
-df |> ggplot(aes(year, value, color = series)) +
-  ggden_line()
+library(dplyr)
+library(showtext)
+load_fonts()
+rank_data |>
+ filter(college \%in\% c("Denison University","Colgate University","Lafayette College")) |>
+  filter(year > 2002) |>
+  ggplot(aes(x = year, y = rank, color = college)) +
+  ggden_line() +
+  scale_y_reverse() +
+  labs(title = "U.S. News & World Report Liberal Arts College Rankings",
+       subtitle = "Denison, Colgate and Lafayette",
+       caption = 'Source: Andrew G. Reiter, “U.S. News & World Report
+       Historical Liberal Arts College and University Rankings,”
+       \navailable at: http://andyreiter.com/datasets/',
+       x = "Year",
+       y = "Rank (lower is better)",
+       color = "College")
 
 }

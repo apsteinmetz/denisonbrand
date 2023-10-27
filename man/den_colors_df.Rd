@@ -3,7 +3,7 @@
 \docType{data}
 \name{den_colors_df}
 \alias{den_colors_df}
-\title{Dataframe of official Denison palettes and their color names and naming codes}
+\title{Dataframe of official Denison palettes, their color names and naming codes}
 \format{
 A data frame of official Denison colors with hex, CMYK and
 Pantone codes

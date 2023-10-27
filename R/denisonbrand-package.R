@@ -12,10 +12,17 @@
 #' @import dplyr
 #' @import ggplot2
 #' @import grDevices
+#' @import sysfonts
+#' @import showtext
 #' @keywords internal
 "_PACKAGE"
 ## usethis namespace: end
 NULL
 
 # declare data items as global variables
-utils::globalVariables(c("den_colors", "den_palettes", "den_colors_df"))
+utils::globalVariables(c("den_colors",
+                         "den_palettes",
+                         "den_colors_df",
+                         "den_font_map",
+                         "den_fonts",
+                         "rank_data"))

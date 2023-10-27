@@ -1,4 +1,4 @@
-#' Dataframe of official Denison palettes and their color names and naming codes
+#' Dataframe of official Denison palettes, their color names and naming codes
 #'
 #' @description
 #' Dataframe of official Denison palettes, their color names and naming codes
@@ -33,3 +33,42 @@
 #' @source <https://denison.edu/offices/communications/branding/color-palette>
 "den_colors"
 
+
+#' Names of open source fonts that are similar to the official Denison fonts.
+#' @description
+#' These are open source fonts from Google Fonts that are similar to
+#' the official Denison fonts.
+#' @format A data frame of font names
+#' \describe{
+#'    \item{purpose}{place to use font}
+#'    \item{denison_font}{Offical font, usually closed source Adobe}
+#'    \item{denison_alt}{Sanctioned Alternative}
+#'    \item{google_substitute}{Open source Google font used in this package}
+#' }
+#' @source <https://denison.edu/offices/communications/branding/typography>
+"den_font_map"
+
+#' Google Substitute Names of Denison  fonts
+#'
+#' @description
+#' Set of  Google Substitute Names and aliases of Denison  fonts
+#'
+#' @format A named character vector of font names
+#' @source <https://denison.edu/offices/communications/branding/color-palette>
+"den_fonts"
+
+#' Top 100 Liberal Arts College and University Rankings
+#' @description
+#' U.S. News & World Report Historical Liberal Arts College and University Rankings.
+#' A subset of the data from Andy Reiter's College Scorecard Data.
+#' Available at: http://andyreiter.com/datasets/
+#' @format A data frame
+#' \describe{
+#'    \item{college}{College Name}
+#'    \item{ipeds_id}{IPEDS ID}
+#'    \item{state}{State}
+#'    \item{year}{Year}
+#'    \item{rank}{Rank}
+#' }
+#' @source <http://andyreiter.com/datasets/>
+"rank_data"

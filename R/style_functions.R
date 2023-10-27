@@ -9,34 +9,45 @@ theme_den<- function(...){
                        legend.position="top",
                        panel.grid.minor.y = ggplot2::element_blank(),
                        panel.grid.minor.x = ggplot2::element_blank(),
-                       panel.grid.major.x = ggplot2::element_blank()),
+                       panel.grid.major.x = ggplot2::element_blank(),
+                       text = element_text(family = den_fonts["den_display_sans"]),
+                       plot.title = element_text(family = den_fonts["den_display_serif1"],
+                                                 size = 40,
+                                                 face = "bold",
+                                                 color = den_colors["red"])
+                       ),
         ggplot2::theme(...))
 }
 
 #' Den-style geom for line or dot plots
 #' @description
-#' Meta ggplot parameter for line or dot plots that sets all den-relevant style
-#' elements to defaults
+#' Use to set line style and theme with one call.  Meta ggplot parameter for line or dot
+#' plots that sets all den-relevant style
+#' elements to defaults, including theme.
 
 #' @param pal override default den secondarydark palette
 #'
 #' @export
 #' @examples
 #' library(ggplot2)
-#' # Create a sequence of years
-#' years <- seq(2014, 2023)
-#'
-#' # Create series
-#' series <- LETTERS[1:6]
-#'
-#' # Create data frame
-#' df <- data.frame(year = rep(years, each = length(series)),
-#'                  series = rep(series, times = length(years)),
-#'                  value = (runif(length(years) * length(series))+1)*1:6)
-#'
-#' # plot df using ggplot
-#' df |> ggplot(aes(year, value, color = series)) +
-#'   ggden_line()
+#' library(dplyr)
+#' library(showtext)
+#' load_fonts()
+#` #plot ranking over time for Denison, Colgate and Lafayette
+#' rank_data |>
+#'  filter(college %in% c("Denison University","Colgate University","Lafayette College")) |>
+#'   filter(year > 2002) |>
+#'   ggplot(aes(x = year, y = rank, color = college)) +
+#'   ggden_line() +
+#'   scale_y_reverse() +
+#'   labs(title = "U.S. News & World Report Liberal Arts College Rankings",
+#'        subtitle = "Denison, Colgate and Lafayette",
+#'        caption = 'Source: Andrew G. Reiter, “U.S. News & World Report
+#'        Historical Liberal Arts College and University Rankings,”
+#'        \navailable at: http://andyreiter.com/datasets/',
+#'        x = "Year",
+#'        y = "Rank (lower is better)",
+#'        color = "College")
 #'
 ggden_line<-function(pal="secondarydark") {
   list(theme_den(),
@@ -47,6 +58,7 @@ ggden_line<-function(pal="secondarydark") {
 
 #' Den-style elements for filled plots
 #' @description
+#' Use to set data element style and theme with one call.
 #' Meta ggplot parameter for filled plots that sets all den-relevant style
 #' elements to defaults, including theme.  Still needs a geom.
 
@@ -55,9 +67,13 @@ ggden_line<-function(pal="secondarydark") {
 #' @export
 #' @examples
 #' library(ggplot2)
+#' library(showtext)
+#' load_fonts()
 #' dt = data.frame(Category = LETTERS[1:6], values = runif(6)*10)
 #' dt |> ggplot(aes(Category, values,fill = Category)) + geom_col() +
-#'   ggden()
+#'   ggden() +
+#'   labs(title = "Denison Brand Colors")
+
 ggden<-function(pal="secondarydark") {
   list(theme_den(),
        scale_fill_den(palette=pal))
