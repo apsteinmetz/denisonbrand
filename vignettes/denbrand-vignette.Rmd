@@ -1,0 +1,139 @@
+---
+title: "denbrand-vignette"
+output: 
+  rmarkdown::html_vignette:
+    scss: denbrand.css
+vignette: >
+  %\VignetteIndexEntry{denbrand-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson Pro"> <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre Caslon Text"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+```{=html}
+<style>
+h1,h2 {font-family: "Lora";color: #C72030 }
+h3,h4,h5,h6 {font-family: "Lora"}
+body {font-family: "Open Sans"}
+den_display_serif1 {font-family: "Lora"}
+den_display_serif2 {font-family: "Crimson Pro";font-size: 1.3em}
+den_text_serif {font-family: "Libre Caslon Text"}
+den__text_sans {font-family: "Open Sans"}
+</style>
+```
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Motivation
+
+This package is intended to help Denison University faculty, staff and students create data visualizations using R code that are consistent with the Denison University Branding Guidelines. It provides color palettes, fonts, ggplot2 themes and graphic elements that are consistent with the guidelines. It also provides an html style sheet for use in Rmarkdown documents and Shiny apps.
+
+This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [denison.edu/brand](https://denison.edu/brand).
+
+This vignette will walk you through the basics of using the package. It assumes that you have some familiarity with R and RStudio. If you are new to R, you may want to start with the [RStudio Primers](https://rstudio.cloud/learn/primers) or the [R for Data Science](https://r4ds.had.co.nz/) book.
+
+First, install the package from GitHub using the `remotes` package. The package is not yet on CRAN.
+
+```{r install, eval = FALSE}
+remotes::install_github("apsteinmetz/denisonbrand")
+```
+
+Then load the package and install the fonts.
+
+```{r setup}
+library(denisonbrand)
+load_fonts()
+```
+
+## Color Palettes
+
+You have access to all the official Denison colors. The colors can be referred to in palette groups or by their individual names.
+
+The palette groups are:
+
+```{r}
+den_palettes
+```
+
+The individual colors are:
+
+```{r}
+den_colors
+```
+
+You can view the palettes and colors by using the `color_bars()` function. For example, to view the entire set of colors:
+
+```{r}
+color_bars()
+```
+
+Or just view one palette:
+
+```{r}
+color_bars(den_palettes["secondarydark"][[1]])
+```
+
+Or by name:
+
+```{r}
+color_bars(den_colors[c("brickdarkred","granvilledarkblue")])
+```
+
+## The Fonts
+
+Most of the official fonts are proprietary Adobe fonts and cannot be used in this open-source package.
+
+`den_font_map` contains a table showing the official font names, the official sanctioned substitute fonts and the open source Google fonts that are used in this package. Several are the sanctioned substitutes and and some are the closest substitutes I could find.
+
+```{r}
+den_font_map
+
+```
+Let's use ggplot2 to see samples of our fonts:
+
+```{r fig.width = 8, fig.height = 6}
+library(ggplot2)
+gg <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.5, 1.5) + theme_void()
+for (n in 1:length(den_fonts)){
+gg <- gg + annotate("text", 1, 1.4 - (0.15 * n),
+                     family = den_fonts[n], size = 12,
+                     label = paste(names(den_fonts[n]),": ",den_fonts[n]))
+}
+gg
+```
+
+## Styling Documents
+
+You may have noticed that the typefaces used in this vignette are not the default R fonts. You can use Denison fonts in your own Rmarkdown and Quarto documents by adding the following lines to the top of your document
+
+```{css, eval = FALSE}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson Pro">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre Caslon Text">
+// font-awesome is not used yet
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+h1,h2,h3,h4,h5,h6 {font-family: "Lora"}
+body {font-family: "Open Sans"}
+den_display_serif1 {font-family: "Lora"}
+den_ display_serif2 {font-family: "Crimson Pro"}
+den_display_sans {font-family: "Oswald"}
+den_text_serif {font-family: "Libre Caslon Text"}
+den__text_sans {font-family: "Open Sans"}
+</style>
+```
+
+The default header fonts will be changed to `Lora` and the default body font will be changed to 'Open Sans'. You can also use the other fonts in your document by using the appropriate class name. For example, to use the 'Crimson Pro' font, use the class name `den_display_serif2` in your Rmarkdown document, like so:
+
+```{css, eval = FALSE}
+<den_display_serif1> This is an example of the 'Crimson Pro' font.</den_display_serif1>
+```
+
+<den_display_serif2> This is an example of the `Crimson Pro` font.</den_display_serif2>

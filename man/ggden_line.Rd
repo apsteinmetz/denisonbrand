@@ -10,8 +10,9 @@ ggden_line(pal = "secondarydark")
 \item{pal}{override default den secondarydark palette}
 }
 \description{
-Meta ggplot parameter for line or dot plots that sets all den-relevant style
-elements to defaults
+Use to set line style and theme with one call.  Meta ggplot parameter for line or dot
+plots that sets all den-relevant style
+elements to defaults, including theme.
 }
 \examples{
 library(ggplot2)

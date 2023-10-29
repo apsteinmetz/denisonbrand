@@ -13,6 +13,10 @@ den_pal(palette = "primary", reverse = FALSE, ...)
 
 \item{...}{Additional arguments to pass to colorRampPalette()}
 }
+\value{
+Returns a function that takes an integer argument
+(the required number of colors) and returns a character vector of colors
+}
 \description{
 Function to interpolate a den color palette
 Mainly for internal use.

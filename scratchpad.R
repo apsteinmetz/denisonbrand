@@ -14,11 +14,6 @@ for (n in 1:length(den_fonts)){
 gg
 showtext_auto(enable = FALSE)
 
-
-
-
-
-
 # Install necessary packages
 install.packages(c("readxl", "httr"))
 

@@ -14,13 +14,12 @@ color_bars <- function(col = den_colors){
 }
 
 
-
 #' Extract den_colors as hex codes
 #' @description
-#' Function to extract den_colors as hex codes
+#' Convert names of den_colors to hex codes
 #'
-#' @param ... Vector of character names of den_colors
-#'
+#' @param ... A Vector of character names of den_colors
+#' @return A vector of hex codes
 #' @export
 #' @examples
 #' den_cols("tasseldarkgold")
@@ -43,6 +42,7 @@ den_cols <- function(...) {
 #'
 #' @param hex_col hex color
 #' @param val_fact brightness percentage change
+#' @returns A modified color value in hex
 #'
 #' @export
 #' @examples
@@ -70,6 +70,8 @@ change_brightness<-function(hex_col,val_fact=0.25){
 #' @param palette Character name of palette in den_palettes
 #' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ... Additional arguments to pass to colorRampPalette()
+#' @return  Returns a function that takes an integer argument
+#' (the required number of colors) and returns a character vector of colors
 #'
 #' @export
 den_pal <- function(palette = "primary", reverse = FALSE, ...) {
@@ -95,19 +97,24 @@ den_pal <- function(palette = "primary", reverse = FALSE, ...) {
 #' @export
 #' @examples
 #' library(ggplot2)
-#' # Create a sequence of years
-#' years <- seq(2014, 2023)
-#'
-#' # Create series
-#' series <- LETTERS[1:6]
-#'
-#' # Create data frame
-#' df <- data.frame(year = rep(years, each = length(series)),
-#'                  series = rep(series, times = length(years)),
-#'                  value = (runif(length(years) * length(series))+1)*1:6)
-#'
-#' df |> ggplot(aes(year, value, color = series)) +
+#' library(dplyr)
+#' library(showtext)
+#' load_fonts()
+#` #plot ranking over time for Denison, Colgate and Lafayette
+#' rank_data |>
+#'  filter(college %in% c("Denison University","Colgate University","Lafayette College")) |>
+#'   filter(year > 2002) |>
+#'   ggplot(aes(x = year, y = rank, color = college)) +
 #'   geom_line(linewidth = 1) +
+#'   scale_y_reverse() +
+#'   labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+#'        subtitle = "Denison, Colgate and Lafayette",
+#'        caption = 'Source: Andrew G. Reiter, “U.S. News & World Report
+#'        Historical Liberal Arts College and University Rankings,”
+#'        \navailable at: http://andyreiter.com/datasets/',
+#'        x = "Year",
+#'        y = "Rank (lower is better)",
+#'        color = "College") +
 #'   scale_color_den(palette = "secondarydark") +
 #'   theme_den()
 #'
@@ -134,10 +141,22 @@ scale_color_den <- function(palette = "secondarydark", discrete = TRUE, reverse 
 #' @export
 #' @examples
 #' library(ggplot2)
-#' dt = data.frame(Category = LETTERS[1:6], values = runif(6)*10)
-#' dt |> ggplot(aes(Category, values,fill = Category)) + geom_col() +
-#' scale_fill_den() +
-#' theme_den()
+#' library(dplyr)
+#' library(showtext)
+#' load_fonts()
+#' pell_grants |>
+#'   filter(college %in%
+#'     c("Denison University","Colgate University","Lafayette College","Bucknell University")) |>
+#'   ggplot(aes(college,pell_frac,fill = college)) +
+#'   geom_col() +
+#'   labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+#'        subtitle = "Denison, Bucknell, Colgate and Lafayette",
+#'        caption = 'Source: U.S. News & World Report, available at:
+#'        https://www.usnews.com/best-colleges/rankings/
+#'        national-liberal-arts-colleges/economic-diversity',
+#'        y = "Fraction of Students Receiving Pell Grants") +
+#'   scale_fill_den(palette = "secondarydark") +
+#'   theme_den()
 #'
 scale_fill_den <- function(palette = "secondarydark", discrete = TRUE, reverse = FALSE, ...) {
   pal <- den_pal(palette = palette, reverse = reverse)

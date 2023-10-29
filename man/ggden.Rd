@@ -10,15 +10,25 @@ ggden(pal = "secondarydark")
 \item{pal}{override default den secondarydark palette}
 }
 \description{
+Use to set data element style and theme with one call.
 Meta ggplot parameter for filled plots that sets all den-relevant style
 elements to defaults, including theme.  Still needs a geom.
 }
 \examples{
 library(ggplot2)
+library(dplyr)
 library(showtext)
 load_fonts()
-dt = data.frame(Category = LETTERS[1:6], values = runif(6)*10)
-dt |> ggplot(aes(Category, values,fill = Category)) + geom_col() +
-  ggden() +
-  labs(title = "Denison Brand Colors")
+pell_grants |>
+  filter(college \%in\%
+    c("Denison University","Colgate University","Lafayette College","Bucknell University")) |>
+  ggplot(aes(college,pell_frac,fill = college)) +
+  labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+       subtitle = "Denison, Bucknell, Colgate and Lafayette",
+       caption = 'Source: U.S. News & World Report, available at:
+       https://www.usnews.com/best-colleges/rankings/
+       national-liberal-arts-colleges/economic-diversity',
+       y = "Fraction of Students Receiving Pell Grants") +
+  ggden()
+
 }

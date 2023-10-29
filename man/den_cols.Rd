@@ -7,10 +7,13 @@
 den_cols(...)
 }
 \arguments{
-\item{...}{Vector of character names of den_colors}
+\item{...}{A Vector of character names of den_colors}
+}
+\value{
+A vector of hex codes
 }
 \description{
-Function to extract den_colors as hex codes
+Convert names of den_colors to hex codes
 }
 \examples{
 den_cols("tasseldarkgold")

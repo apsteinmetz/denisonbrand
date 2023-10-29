@@ -72,3 +72,34 @@
 #' }
 #' @source <http://andyreiter.com/datasets/>
 "rank_data"
+
+#' Fraction of Students Receiving Pell Grants
+#' @description
+#' U.S. News & World Report Liberal Arts College and University Rankings.
+#' This table shows the percentage of undergraduates receiving federal Pell Grants.
+#' Students from households that earn less than $50,000 annually typically qualify for Pell.
+#' The proportion of students receiving Pell Grants isn't a perfect measure of an
+#' institution's efforts to achieve economic diversity: A college might enroll a
+#' large number of students just above the Pell cutoff, for instance. Still,
+#' many experts say that Pell figures are the best available gauge of how many
+#' low-income undergrads there are on a given campus. Pell Grant percentages
+#' were calculated using fall 2022 data reported to U.S. News on all degree-seeking
+#' undergraduates. In some cases, 2020-2021 data from the IPEDS Student
+#' Financial Aid survey was used.
+##' @format A data frame
+#' \describe{
+#'    \item{college}{College Name}
+#'    \item{city}{City}
+#'    \item{state}{State}
+#'    \item{pell_frac}{Fraction of Students Receiving Pell Grants}
+#' }
+#' @source <https://www.usnews.com/best-colleges/rankings/national-liberal-arts-colleges/economic-diversity>
+"pell_grants"
+
+#' List of Denison peer schools
+#' @description
+#' List of Denison peer schools
+#'
+#' @format List chr [1:20]
+#'
+"peer_schools_list"

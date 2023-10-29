@@ -30,9 +30,21 @@ scale_color_manual(values=den_cols(<color name(s)>) for finer control.
 }
 \examples{
 library(ggplot2)
-dt = data.frame(Category = LETTERS[1:6], values = runif(6)*10)
-dt |> ggplot(aes(Category, values,fill = Category)) + geom_col() +
-scale_fill_den() +
-theme_den()
+library(dplyr)
+library(showtext)
+load_fonts()
+pell_grants |>
+  filter(college \%in\%
+    c("Denison University","Colgate University","Lafayette College","Bucknell University")) |>
+  ggplot(aes(college,pell_frac,fill = college)) +
+  geom_col() +
+  labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+       subtitle = "Denison, Bucknell, Colgate and Lafayette",
+       caption = 'Source: U.S. News & World Report, available at:
+       https://www.usnews.com/best-colleges/rankings/
+       national-liberal-arts-colleges/economic-diversity',
+       y = "Fraction of Students Receiving Pell Grants") +
+  scale_fill_den(palette = "secondarydark") +
+  theme_den()
 
 }

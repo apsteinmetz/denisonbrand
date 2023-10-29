@@ -11,6 +11,9 @@ change_brightness(hex_col, val_fact = 0.25)
 
 \item{val_fact}{brightness percentage change}
 }
+\value{
+A modified color value in hex
+}
 \description{
 Function to change brightness value of a hex color.
 Using this will create colors not from the official palette.
