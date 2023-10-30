@@ -3,7 +3,7 @@ Type: Package
 Title: Typefaces, Colors and GGPlot Themes for Denison University
 Version: 0.1.0
 Author: Arthur Steinmetz
-Maintainer: Arthur Steinmetz <apsteinmetz@gmail.comt>
+Maintainer: Arthur Steinmetz <apsteinmetz@gmail.com>
 Description: Palettes, typefaces and ggplot themes according to the Denison 2023
     brand standards from https://brand.denison.edu/.
 License: MIT + file LICENSE
