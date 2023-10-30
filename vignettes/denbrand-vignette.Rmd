@@ -2,7 +2,8 @@
 title: "denbrand-vignette"
 output: 
   rmarkdown::html_vignette:
-    scss: denbrand.css
+    fig_width: 7
+    fig_height: 5
 vignette: >
   %\VignetteIndexEntry{denbrand-vignette}
   %\VignetteEngine{knitr::rmarkdown}
@@ -31,13 +32,13 @@ knitr::opts_chunk$set(
 
 ## Motivation
 
-This package is intended to help Denison University faculty, staff and students create data visualizations using R code that are consistent with the Denison University Branding Guidelines. It provides color palettes, fonts, ggplot2 themes and graphic elements that are consistent with the guidelines. It also provides an html style sheet for use in Rmarkdown documents and Shiny apps.
+This package is intended to help the Denison University community create data visualizations using R code that is consistent with the Denison University Branding Guidelines. It provides color palettes, fonts, ggplot2 themes and graphic elements that are consistent with the guidelines. It also provides an html style sheet for use in Rmarkdown documents and Shiny apps.
 
 This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [denison.edu/brand](https://denison.edu/brand).
 
 This vignette will walk you through the basics of using the package. It assumes that you have some familiarity with R and RStudio. If you are new to R, you may want to start with the [RStudio Primers](https://rstudio.cloud/learn/primers) or the [R for Data Science](https://r4ds.had.co.nz/) book.
 
-First, install the package from GitHub using the `remotes` package. The package is not yet on CRAN.
+First, install the package from GitHub (whwere you may also view the source code) using the `remotes` package. The package is not yet on CRAN.
 
 ```{r install, eval = FALSE}
 remotes::install_github("apsteinmetz/denisonbrand")
@@ -47,6 +48,7 @@ Then load the package and install the fonts.
 
 ```{r setup}
 library(denisonbrand)
+library(dplyr)
 load_fonts()
 ```
 
@@ -96,7 +98,7 @@ den_font_map
 ```
 Let's use ggplot2 to see samples of our fonts:
 
-```{r fig.width = 8, fig.height = 6}
+```{r}
 library(ggplot2)
 gg <- ggplot(NULL, aes(x = 1, y = 1)) + ylim(0.5, 1.5) + theme_void()
 for (n in 1:length(den_fonts)){
@@ -105,6 +107,82 @@ gg <- gg + annotate("text", 1, 1.4 - (0.15 * n),
                      label = paste(names(den_fonts[n]),": ",den_fonts[n]))
 }
 gg
+```
+
+## ggplot2 Themes
+
+The main purpose of this package is to support using `ggplot2` with Denison brand colors and typefaces.  `ggplot2` modifies plot elements through two primary paths, data elements such as lines, points and bars, and background elements such as axes, labels, legends, etc.  The `scale_*` functions are used to modify data elements, while the `theme_*` functions are used to modify background elements.  The `denisonbrand` package provides `ggplot2` functions for both of these and two somewhat non-standard meta functions to modify the data and background in one go.
+
+The package also includes two sample data sets containing college ranking data and a list of Denison peer schools for use in the examples.
+
+```{r}
+# plot ranking over time for Denison, Colgate and Lafayette
+gg <- rank_data |>
+ filter(college %in% c("Denison University","Colgate University","Lafayette College")) |>
+  filter(year > 2002) |>
+  ggplot(aes(x = year, y = rank, color = college)) +
+  geom_line(linewidth = 1) +
+  scale_y_reverse() +
+  labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+       subtitle = "Denison, Colgate and Lafayette",
+       caption = 'Source: Andrew G. Reiter, “U.S. News & World Report
+       Historical Liberal Arts College and University Rankings,”
+       \navailable at: http://andyreiter.com/datasets/',
+       x = "Year",
+       y = "Rank (lower is better)",
+       color = "College") +
+  # apply Dension colors
+  scale_color_den(palette = "secondarydark")
+gg
+```
+
+This applied the Denison "secondarydark" palette to the line colors but we're still using the `ggplot2` default fonts.  Now let's apply the Denison fonts and some other theme elements.
+```{r}
+gg + theme_den()
+```
+To use the Denison colors in bar plots replace `scale_color_den()` with `scale_fill_den()`.  
+
+```{r}
+# plot percentage of pell grant recipients for Denison, Colgate, Bucknell and Lafayette 
+gg <- pell_grants |>
+  filter(college %in%
+    c("Denison University","Colgate University","Lafayette College","Bucknell University")) |>
+  ggplot(aes(college,pell_frac,fill = college)) +
+  geom_col() +
+  labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+       subtitle = "Denison, Bucknell, Colgate and Lafayette",
+       caption = 'Source: U.S. News & World Report, available at:
+       https://www.usnews.com/best-colleges/rankings/
+       national-liberal-arts-colleges/economic-diversity',
+       y = "Fraction of Students Receiving Pell Grants") +
+  scale_fill_den(palette = "secondarydark") +
+  theme_den()
+gg
+```
+
+Feel free to further modify theme elements by passing parameters to the `theme_den()` function.  For example, to change the plot title font size:
+```{r}
+gg + theme_den(plot.title = ggplot2::element_text(size = 40))
+```
+
+You can combine the `scale_*` call and the `theme_*` call into a single call to `ggden()`.  This will apply colors and fonts to all elements.  You still have to make a call to `geom_*` to specify the type of plot you want.  If using a line plot, you can skip the 'geom_line()' call by using `ggden_line()`.
+
+
+```{r}
+gg <- pell_grants |>
+  filter(college %in%
+    c("Denison University","Colgate University","Lafayette College","Bucknell University")) |>
+  ggplot(aes(college,pell_frac,fill = college)) +
+  labs(title = "U.S. News & World Report\nLiberal Arts College Rankings",
+       subtitle = "Denison, Bucknell, Colgate and Lafayette",
+       caption = 'Source: U.S. News & World Report, available at:
+       https://www.usnews.com/best-colleges/rankings/
+       national-liberal-arts-colleges/economic-diversity',
+       y = "Fraction of Students Receiving Pell Grants") +
+  geom_col() +
+  ggden()
+gg
+
 ```
 
 ## Styling Documents
@@ -132,8 +210,8 @@ den__text_sans {font-family: "Open Sans"}
 
 The default header fonts will be changed to `Lora` and the default body font will be changed to 'Open Sans'. You can also use the other fonts in your document by using the appropriate class name. For example, to use the 'Crimson Pro' font, use the class name `den_display_serif2` in your Rmarkdown document, like so:
 
-```{css, eval = FALSE}
-<den_display_serif1> This is an example of the 'Crimson Pro' font.</den_display_serif1>
+```{html, eval = FALSE}
+<den_display_serif2> This is an example of the <b>Crimson Pro</b> font.</den_display_serif2>
 ```
 
-<den_display_serif2> This is an example of the `Crimson Pro` font.</den_display_serif2>
+<den_display_serif2> This is an example of the <b>Crimson Pro</b> font.</den_display_serif2>
