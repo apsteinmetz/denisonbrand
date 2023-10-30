@@ -12,7 +12,7 @@ theme_den<- function(...){
                        panel.grid.major.x = ggplot2::element_blank(),
                        text = element_text(family = den_fonts["den_display_sans"]),
                        plot.title = element_text(family = den_fonts["den_display_serif1"],
-                                                 size = 40,
+                                                 size = 20,
                                                  face = "bold",
                                                  color = den_colors["red"])
                        ),
@@ -80,7 +80,8 @@ ggden_line<-function(pal="secondarydark") {
 #'        https://www.usnews.com/best-colleges/rankings/
 #'        national-liberal-arts-colleges/economic-diversity',
 #'        y = "Fraction of Students Receiving Pell Grants") +
-#'   ggden()
+#'   ggden() +
+#'   geom_col()
 #'
 
 ggden<-function(pal="secondarydark") {

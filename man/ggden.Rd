@@ -29,6 +29,7 @@ pell_grants |>
        https://www.usnews.com/best-colleges/rankings/
        national-liberal-arts-colleges/economic-diversity',
        y = "Fraction of Students Receiving Pell Grants") +
-  ggden()
+  ggden() +
+  geom_col()
 
 }
