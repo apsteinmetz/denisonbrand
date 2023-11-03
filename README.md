@@ -1,4 +1,4 @@
-denbrand Package
+denisonbrand Package
 ================
 Arthur Steinmetz (1980)
 
@@ -116,6 +116,17 @@ First using `ggplot2` defaults.
 
 ``` r
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.3.1
+library(dplyr)
+#> Warning: package 'dplyr' was built under R version 4.3.1
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library(forcats)
 
 rank_data |> 

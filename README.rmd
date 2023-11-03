@@ -1,5 +1,5 @@
 ---
-  title: "denbrand Package"
+  title: "denisonbrand Package"
   author: "Arthur Steinmetz (1980)"
   output: github_document
   
