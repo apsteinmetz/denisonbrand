@@ -53,6 +53,10 @@ You have access to all the official Denison colors. The colors can be referred t
 
 You can view the palettes and colors by using the `color_bars()` function. 
 
+```{r}
+den_palettes
+```
+
 ## The Fonts
 
 Most of the official fonts are proprietary Adobe fonts and cannot be used in this open-source package.
@@ -104,9 +108,6 @@ print(gg)
 ```
 Now with Dension colors and fonts.  The use of colors in this plot is kind of gratuitous and just to show the palette.
 ```{r}
-library(denisonbrand)
-load_fonts()
-
 gg <- gg + 
   scale_fill_den() +
   theme_den(legend.position = "none")

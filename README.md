@@ -63,6 +63,31 @@ the colors
 You can view the palettes and colors by using the `color_bars()`
 function.
 
+``` r
+den_palettes
+#> $primary
+#>          red gradcapblack        white 
+#>    "#C72030"    "#000000"    "#FFFFFF" 
+#> 
+#> $secondarybright
+#>      brickbrightred granvillebrightblue hillsidebrightgreen    tasselbrightgold 
+#>           "#C66E4E"           "#41748D"           "#89A84F"           "#FFC72C" 
+#>     stonebrightgrey 
+#>           "#D2D1D1" 
+#> 
+#> $secondarydark
+#>      brickdarkred granvilledarkblue hillsidedarkgreen    tasseldarkgold 
+#>         "#9E1A1D"         "#405362"         "#4A6A1D"         "#EAAA00" 
+#>     stonedarkgrey      moroccanblue 
+#>         "#4B4F54"         "#0E586E" 
+#> 
+#> $secondaryneutral
+#>        brassmetallic          neutralblue neutralhillsidegreen 
+#>            "#B0986E"            "#D1DDE6"            "#D0D1AB" 
+#>    neutraltasselgold      neutralcoolgray     neutralwarmstone 
+#>            "#F5E1A4"            "#F0EDEB"            "#DFD6C5"
+```
+
 ## The Fonts
 
 Most of the official fonts are proprietary Adobe fonts and cannot be
@@ -146,32 +171,18 @@ gg <- rank_data |>
 print(gg)
 ```
 
-<img src="man/figuresunnamed-chunk-3-1.png" width="100%" /> Now with
+<img src="man/figuresunnamed-chunk-4-1.png" width="100%" /> Now with
 Dension colors and fonts. The use of colors in this plot is kind of
 gratuitous and just to show the palette.
 
 ``` r
-library(denisonbrand)
-load_fonts()
-#> [1] "Loading Google Fonts"
-#> den_display_serif1 
-#>             "Lora" 
-#> den_display_sans 
-#>         "Oswald" 
-#> den_display_serif2 
-#>      "Crimson Pro" 
-#> den_text_sans 
-#>   "Open Sans" 
-#>      den_text_serif 
-#> "Libre Caslon Text"
-
 gg <- gg + 
   scale_fill_den() +
   theme_den(legend.position = "none")
 print(gg)
 ```
 
-<img src="man/figuresunnamed-chunk-4-1.png" width="100%" /> Additional
+<img src="man/figuresunnamed-chunk-5-1.png" width="100%" /> Additional
 details are in the vignette.
 
 `vignette("denbrand-vignette")`
