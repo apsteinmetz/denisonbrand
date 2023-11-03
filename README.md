@@ -29,7 +29,7 @@ source code) using the `remotes` package. The package is not yet on
 CRAN.
 
 ``` r
-remotes::install_github("apsteinmetz/denisonbrand")
+remotes::install_github("apsteinmetz/denisonbrand",build_vignettes = TRUE)
 ```
 
 ## Usage
@@ -129,7 +129,7 @@ library(dplyr)
 #>     intersect, setdiff, setequal, union
 library(forcats)
 
-rank_data |> 
+gg <- rank_data |> 
   filter(college %in% peer_schools_list) |> 
   filter(year == 2024) |>
   mutate(college = fct_reorder(college, rank,.desc = TRUE)) |> 
@@ -143,6 +143,7 @@ rank_data |>
        y = "Rank") +
   #remove legend
   theme(legend.position = "none")
+print(gg)
 ```
 
 <img src="man/figuresunnamed-chunk-3-1.png" width="100%" /> Now with
@@ -151,9 +152,6 @@ gratuitous and just to show the palette.
 
 ``` r
 library(denisonbrand)
-library(ggplot2)
-library(dplyr)
-library(forcats)
 load_fonts()
 #> [1] "Loading Google Fonts"
 #> den_display_serif1 
@@ -167,24 +165,16 @@ load_fonts()
 #>      den_text_serif 
 #> "Libre Caslon Text"
 
-rank_data |> 
-  filter(college %in% peer_schools_list) |> 
-  filter(year == 2024) |>
-  mutate(college = fct_reorder(college, rank,.desc = TRUE)) |> 
-  ggplot(aes(college,rank, fill = college)) +
-  geom_col()  +
+gg <- gg + 
   scale_fill_den() +
-  coord_flip() +
-  labs(title = "Denison's US News Ranking in 2024\n Vs. Peers",
-       subtitle = "(Lower Number is Better)",
-       caption = "Source: US News and World Report",
-       x = NULL,
-       y = "Rank") +
-  #remove legend
   theme_den(legend.position = "none")
+print(gg)
 ```
 
-<img src="man/figuresunnamed-chunk-4-1.png" width="100%" />
+<img src="man/figuresunnamed-chunk-4-1.png" width="100%" /> Additional
+details are in the vignette.
+
+`vignette("denbrand-vignette")`
 
 ## Further Work
 
