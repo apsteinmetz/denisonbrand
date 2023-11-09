@@ -20,11 +20,11 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 ![](man/figures/denison_logo.png)
 
-## Overivew
+## Overview
 
 This package is intended to help the Denison University community create data visualizations using R code that is consistent with the Denison University Branding Guidelines. It provides color palettes, fonts, ggplot2 themes and graphic elements that are consistent with the guidelines. It also provides an html style sheet for use in Rmarkdown documents and Shiny apps.
 
-This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [denison.edu/brand](https://denison.edu/brand).
+This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [brand.,denison.edu](https://brand.denison.edu).
 
 ## Installation
 
