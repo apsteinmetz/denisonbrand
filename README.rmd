@@ -121,4 +121,8 @@ Additional details are in the vignette.
 
 I am not aware of any brand standards for plots formatting.  Each department seems to do whatever it likes.  I'd like to see one standard, though.
 
+The Vignette includes some CSS styling at the top but I'd like to learn how to make a proper CSS file and include it in the package.  
+
 Also, I am thinking about the best way to provide easy access to logos for plot decorations.
+
+
