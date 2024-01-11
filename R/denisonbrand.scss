@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+   font-family: 'Open Sans',serif;
+}
+
+// Base document colors
+$body-color: #C72030;
+$link-color: #75AADB;
+
+// Code blocks
+$code-block-bg-alpha: -.8;
