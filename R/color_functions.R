@@ -9,7 +9,7 @@
 #' color_bars(den_colors[c("red","neutralblue")])
 #' color_bars(den_palettes$secondarydark)
 #'
-color_bars <- function(col = den_colors){
+color_bars <- function(col = den_colors) {
   graphics::barplot(rep(1, length(col)), col = col)
 }
 
@@ -28,8 +28,9 @@ den_cols <- function(...) {
   #data("den_colors",envir = environment())
   cols <- c(...)
 
-  if (is.null(cols))
-    return (as.character(den_colors))
+  if (is.null(cols)) {
+    return(as.character(den_colors))
+  }
 
   as.character(den_colors[cols])
 }
@@ -51,14 +52,14 @@ den_cols <- function(...) {
 #' # make darker
 #' den_palettes$secondarydark |> change_brightness(-.5) |> color_bars()
 #'
-change_brightness<-function(hex_col,val_fact=0.25){
-  hsv_col<-hex_col %>% col2rgb() %>% rgb2hsv()
-  if (val_fact>0) {
-    hsv_col[3,]<-hsv_col[3,]+((1-hsv_col[3,])*val_fact)
+change_brightness <- function(hex_col, val_fact = 0.25) {
+  hsv_col <- hex_col |> col2rgb() |> rgb2hsv()
+  if (val_fact > 0) {
+    hsv_col[3, ] <- hsv_col[3, ] + ((1 - hsv_col[3, ]) * val_fact)
   } else {
-    hsv_col[3,]<-hsv_col[3,]*(1+val_fact)
+    hsv_col[3, ] <- hsv_col[3, ] * (1 + val_fact)
   }
-  return(hsv(hsv_col[1,],hsv_col[2,],hsv_col[3,]))
+  return(hsv(hsv_col[1, ], hsv_col[2, ], hsv_col[3, ]))
 }
 
 #' Interpolate colors of a `den` color palette
@@ -78,7 +79,9 @@ den_pal <- function(palette = "primary", reverse = FALSE, ...) {
   #data("den_palettes",envir = environment())
   pal <- den_palettes[[palette]]
 
-  if (reverse) pal <- rev(pal)
+  if (reverse) {
+    pal <- rev(pal)
+  }
 
   colorRampPalette(pal, ...)
 }
@@ -100,7 +103,7 @@ den_pal <- function(palette = "primary", reverse = FALSE, ...) {
 #' library(dplyr)
 #' library(showtext)
 #' load_fonts()
-#` #plot ranking over time for Denison, Colgate and Lafayette
+#' # plot ranking over time for Denison, Colgate and Lafayette
 #' rank_data |>
 #'  filter(college %in% c("Denison University","Colgate University","Lafayette College")) |>
 #'   filter(year > 2002) |>
@@ -118,10 +121,20 @@ den_pal <- function(palette = "primary", reverse = FALSE, ...) {
 #'   scale_color_den(palette = "secondarydark") +
 #'   theme_den()
 #'
-scale_color_den <- function(palette = "secondarydark", discrete = TRUE, reverse = FALSE, ...) {
+scale_color_den <- function(
+  palette = "secondarydark",
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+) {
   pal <- den_pal(palette = palette, reverse = reverse)
   if (discrete) {
-    ggplot2::discrete_scale("colour", paste0("den_", palette), palette = pal, ...)
+    ggplot2::discrete_scale(
+      "colour",
+      paste0("den_", palette),
+      palette = pal,
+      ...
+    )
   } else {
     ggplot2::scale_color_gradientn(colours = pal(256), ...)
   }
@@ -158,7 +171,12 @@ scale_color_den <- function(palette = "secondarydark", discrete = TRUE, reverse 
 #'   scale_fill_den(palette = "secondarydark") +
 #'   theme_den()
 #'
-scale_fill_den <- function(palette = "secondarydark", discrete = TRUE, reverse = FALSE, ...) {
+scale_fill_den <- function(
+  palette = "secondarydark",
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+) {
   pal <- den_pal(palette = palette, reverse = reverse)
 
   if (discrete) {

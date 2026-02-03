@@ -24,7 +24,7 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 This package is intended to help the Denison University community create data visualizations using R code that is consistent with the Denison University Branding Guidelines. It provides color palettes, fonts, ggplot2 themes and graphic elements that are consistent with the guidelines. It also provides an html style sheet for use in Rmarkdown documents and Shiny apps.
 
-This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [brand.,denison.edu](https://brand.denison.edu).
+This package is not a product of Denison University or sanctioned by the school. It is a personal project of the author, who is an alumnus. It is not intended to be a substitute for the official branding guidelines, but rather a tool to help people create R project visualizations that are consistent with the guidelines. The official branding guidelines are at [brand.denison.edu](https://brand.denison.edu).
 
 ## Installation
 
@@ -41,6 +41,8 @@ Load the package and install the fonts.
 
 ```{r setup, message = FALSE, warning = FALSE, eval=TRUE}
 library(denisonbrand)
+library(showtext)
+showtext_auto()
 load_fonts()
 ```
 
@@ -74,9 +76,9 @@ The main purpose of this package is to support using `ggplot2` with Denison bran
 
 The important ggplot2 functions are:
 
-`scalel_color_den()` for setting colors of line and scatter plots.
+`scale_color_den()` for setting colors of line and scatter plots.
 
-`scale_fill_denison()` for setting colors of bars and other filled shapes.
+`scale_fill_den()` for setting colors of bars and other filled shapes.
 
 `theme_den()` for setting background elements such as axes, labels, legends, etc. in accordance with Denison colors and typefaces. 
 

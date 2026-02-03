@@ -2,8 +2,8 @@
 % Please edit documentation in R/denisonbrand-package.R
 \docType{package}
 \name{denisonbrand}
-\alias{denisonbrand}
 \alias{denisonbrand-package}
+\alias{denisonbrand}
 \title{Denison Brand styles}
 \description{
 Typefaces and Color palettes for ggplot2 using Denison University Branding as of 2023.

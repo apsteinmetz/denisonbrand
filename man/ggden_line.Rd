@@ -19,6 +19,7 @@ library(ggplot2)
 library(dplyr)
 library(showtext)
 load_fonts()
+# plot ranking over time for Denison, Colgate and Lafayette
 rank_data |>
  filter(college \%in\% c("Denison University","Colgate University","Lafayette College")) |>
   filter(year > 2002) |>

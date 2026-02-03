@@ -30,12 +30,11 @@
 #'gg
 #'
 #' showtext_auto(enable = FALSE)
-load_fonts <- function(){
-  print("Loading Google Fonts")
-  for (n in 1:length(denisonbrand::den_fonts)){
-    print(denisonbrand::den_fonts[n])
+load_fonts <- function() {
+  message("Loading Google Fonts")
+  for (n in 1:length(denisonbrand::den_fonts)) {
+    message(denisonbrand::den_fonts[n])
     sysfonts::font_add_google(denisonbrand::den_fonts[n])
   }
-  showtext_auto()
+  showtext::showtext_auto()
 }
-

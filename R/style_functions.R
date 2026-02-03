@@ -3,20 +3,25 @@
 #' @param ... override or supplement arguments to pass through to theme()
 #'
 #' @export
-theme_den<- function(...){
-  list (ggplot2::theme_bw(),
-        ggplot2::theme(legend.title=ggplot2::element_blank(),
-                       legend.position="top",
-                       panel.grid.minor.y = ggplot2::element_blank(),
-                       panel.grid.minor.x = ggplot2::element_blank(),
-                       panel.grid.major.x = ggplot2::element_blank(),
-                       text = element_text(family = den_fonts["den_display_sans"]),
-                       plot.title = element_text(family = den_fonts["den_display_serif1"],
-                                                 size = 20,
-                                                 face = "bold",
-                                                 color = den_colors["red"])
-                       ),
-        ggplot2::theme(...))
+theme_den <- function(...) {
+  list(
+    ggplot2::theme_bw(),
+    ggplot2::theme(
+      legend.title = ggplot2::element_blank(),
+      legend.position = "top",
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.minor.x = ggplot2::element_blank(),
+      panel.grid.major.x = ggplot2::element_blank(),
+      text = element_text(family = den_fonts["den_display_sans"]),
+      plot.title = element_text(
+        family = den_fonts["den_display_serif1"],
+        size = 20,
+        face = "bold",
+        color = den_colors["red"]
+      )
+    ),
+    ggplot2::theme(...)
+  )
 }
 
 #' Den-style geom for line or dot plots
@@ -33,7 +38,7 @@ theme_den<- function(...){
 #' library(dplyr)
 #' library(showtext)
 #' load_fonts()
-#` #plot ranking over time for Denison, Colgate and Lafayette
+#' # plot ranking over time for Denison, Colgate and Lafayette
 #' rank_data |>
 #'  filter(college %in% c("Denison University","Colgate University","Lafayette College")) |>
 #'   filter(year > 2002) |>
@@ -49,10 +54,12 @@ theme_den<- function(...){
 #'        y = "Rank (lower is better)",
 #'        color = "College")
 #'
-ggden_line<-function(pal="secondarydark") {
-  list(theme_den(),
-       scale_color_den(palette=pal),
-       ggplot2::geom_line(size=1.5))
+ggden_line <- function(pal = "secondarydark") {
+  list(
+    theme_den(),
+    scale_color_den(palette = pal),
+    ggplot2::geom_line(linewidth = 1.5)
+  )
 }
 
 
@@ -84,9 +91,6 @@ ggden_line<-function(pal="secondarydark") {
 #'   geom_col()
 #'
 
-ggden<-function(pal="secondarydark") {
-  list(theme_den(),
-       scale_fill_den(palette=pal))
+ggden <- function(pal = "secondarydark") {
+  list(theme_den(), scale_fill_den(palette = pal))
 }
-
-

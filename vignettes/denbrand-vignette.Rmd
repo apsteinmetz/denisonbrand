@@ -20,7 +20,7 @@ body {font-family: "Open Sans"}
 den_display_serif1 {font-family: "Lora"}
 den_display_serif2 {font-family: "Crimson Pro";font-size: 1.3em}
 den_text_serif {font-family: "Libre Caslon Text"}
-den__text_sans {font-family: "Open Sans"}
+den_text_sans {font-family: "Open Sans"}
 </style>
 ```
 ```{r, include = FALSE}
@@ -38,7 +38,7 @@ This package is not a product of Denison University or sanctioned by the school.
 
 This vignette will walk you through the basics of using the package. It assumes that you have some familiarity with R and RStudio. If you are new to R, you may want to start with the [RStudio Primers](https://rstudio.cloud/learn/primers) or the [R for Data Science](https://r4ds.had.co.nz/) book.
 
-First, install the package from GitHub (whwere you may also view the source code) using the `remotes` package. The package is not yet on CRAN.
+First, install the package from GitHub (where you may also view the source code) using the `remotes` package. The package is not yet on CRAN.
 
 ```{r install, eval = FALSE}
 remotes::install_github("apsteinmetz/denisonbrand")
@@ -201,10 +201,10 @@ You may have noticed that the typefaces used in this vignette are not the defaul
 h1,h2,h3,h4,h5,h6 {font-family: "Lora"}
 body {font-family: "Open Sans"}
 den_display_serif1 {font-family: "Lora"}
-den_ display_serif2 {font-family: "Crimson Pro"}
+den_display_serif2 {font-family: "Crimson Pro"}
 den_display_sans {font-family: "Oswald"}
 den_text_serif {font-family: "Libre Caslon Text"}
-den__text_sans {font-family: "Open Sans"}
+den_text_sans {font-family: "Open Sans"}
 </style>
 ```
 
