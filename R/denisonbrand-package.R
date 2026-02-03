@@ -16,17 +16,21 @@
 #' @import grDevices
 #' @import sysfonts
 #' @import showtext
+#' @importFrom png readPNG
+#' @importFrom grid rasterGrob
 #' @keywords internal
 "_PACKAGE"
 ## usethis namespace: end
 NULL
 
 # declare data items as global variables
-utils::globalVariables(c("den_colors",
-                         "den_palettes",
-                         "den_colors_df",
-                         "den_font_map",
-                         "den_fonts",
-                         "pell_grants",
-                         "peer_schools_list",
-                         "rank_data"))
+utils::globalVariables(c(
+  "den_colors",
+  "den_palettes",
+  "den_colors_df",
+  "den_font_map",
+  "den_fonts",
+  "pell_grants",
+  "peer_schools_list",
+  "rank_data"
+))
